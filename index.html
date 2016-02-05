@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PaperJS direct JS tutorial</title>
+  <script type="text/javascript" src="js/paper-full.min.js"></script>
+  <script type="text/javascript">
+  //below: paper obj single scope
+    // paper.install(window);
+    // window.onload = function() {
+    //   var canvas = document.getElementById('myCanvas');
+    //
+    //   paper.setup(canvas);
+    //
+    //   var path = new paper.Path();
+    //
+    //   path.strokeColor = 'black';
+    //
+    //   var start = new paper.Point(100, 100);
+    //   path.moveTo(start);
+    //   path.lineTo(start.add([200, -50]));
+    //
+    //   paper.view.draw();
+    // }
+
+    // below: event handlers
+    // paper.install(window);
+    // window.onload = function() {
+    //   paper.setup('myCanvas');
+    //
+    //   var path = new Path.Rectangle([75, 75], [100, 100]);
+    //   path.strokeColor = 'black';
+    //
+    //   view.onFrame = function(event) {
+    //     path.rotate(3);
+    //   }
+    // }
+
+    // below: working with tools
+    paper.install(window);
+    window.onload = function() {
+      paper.setup('myCanvas');
+
+      var tool = new Tool();
+      var path;
+
+      tool.onMouseDown = function(event) {
+        console.log('mouse down');
+        path = new Path();
+        path.strokeColor = 'black';
+        path.add(event.point);
+        console.log(event.point);
+      }
+
+      tool.onMouseDrag = function(event) {
+        console.log('mouse drag');
+        path.add(event.point);
+        console.log(event.point);
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <canvas class="myCanvas" id="myCanvas"></canvas>
+</body>
+</html>
